@@ -1,15 +1,39 @@
 <template>
-<div class="v-cart"></div>
+<div class="v-cart">
+  <h1>Cart</h1>
+  <v-cart-item
+    v-for="(item, index) in cart_data"
+    :key="item.article"
+    :cart_item_data="item"
+    @deleteFromCart="deleteFromCart(index)"
+  />
+</div>
 </template>
 
 <script>
+import vCartItem from './v-cart-item'
 export default {
   name: "v-cart.vue",
-  props:{},
+  components:{
+    vCartItem
+  },
+  props:{
+    cart_data: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
+  },
   data(){
     return{}
   },
-  computed:{}
+  computed:{},
+  methods:{
+    deleteFromCart(index){
+      console.log(index)
+    }
+  }
 }
 </script>
 
